@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head> 
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <meta charset="utf-8">
+    <title>Insert ScoreSheet data</title> 
+</head> 
+
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+
+
+<body>
+
+
+<h2>Submitted form data</h2>
+<p id="res"></p>
+
+
+
+
+
+
+
+<h2>Fund Statistics</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>Term</th>
+    <th>Formula</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Total Competition Fee</td>
+    <td>Number of Entrants * Per Entrant Fee</td>
+    <td id="one"></td>
+  </tr>
+  <tr>
+    <td>Amount to be allocated/ paid</td>
+    <td>Number of Entrants * Per Entrant Fee * (Percent of amount to be allocated / 100)</td>
+    <td id="two"></td>
+  </tr>
+    <tr>
+    <td>Rundown Fund</td>
+    <td>if (NTP == FALSE): Number of Entrants * Per Entrant Fee <br> <br>if (NTP == TRUE): [Number of Entrants * Per Entrant Fee * (Percent of amount to be allocated / 100)] - [NTP * 10] </td>
+    <td id="three"></td>
+  </tr>
+</table>
+
+
+
+<br><br>
+
+
+<h2>Prize Distribution Table based on Number of Entrants</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>Rundown Fund</th>
+    <th>Number of Entrants * Per Entrant Fee = $ 600</th>
+    <th>ROUND (Percent of amount to be allocated * 0.5 | 0.3 | 0.19)</th>
+  </tr>
+  <tr>
+    <td>1st Position</td>
+    <td>50 %</td>
+    <td>$34</td>
+  </tr>
+  <tr>
+    <td>2nd Position</td>
+    <td>30 %</td>
+    <td>$24</td>
+  </tr>
+    <tr>
+    <td>3rd Position</td>
+    <td>19 %</td>
+    <td>$14</td>
+  </tr>
+</table>
+
+
+
+
+
+<br><br>
+
+
+
+<h2>Insert ScoreSheet data manually in the table below</h2>
+
+Number of Entrants<br>
+
+<form method= "GET" action="page2_golf.html">
+
+    <input type="number" id="table-row-num" value="3">
+    <button  id="adjustTable" type="button">Adjust Table Rows</button>
+    
+    
+    <div id="table-gen">
+        <p>Table generated here after clicking submit</p>
+        <table cellpadding="1" cellspacing="1" border="1" id="scoreboard">
+          <tr>
+          <th>Player No</th>
+          <th>Player Name</th>
+          <th>Representing</th>
+          <th>Golflink No</th>
+          <th>Daily Hand</th>
+          <th>GA Handicap</th>
+          <th>Gross</th>
+          <th>Nett</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td><input type="name" placeholder="text goes here..."></td>
+            <td><input type="name" placeholder="text goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+            <td><input type="decimal" placeholder="decimal goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><input type="name" placeholder="text goes here..."></td>
+            <td><input type="name" placeholder="text goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+            <td><input type="decimal" placeholder="decimal goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><input type="name" placeholder="text goes here..."></td>
+            <td><input type="name" placeholder="text goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+            <td><input type="decimal" placeholder="decimal goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+            <td><input type="number" placeholder="number goes here..."></td>
+          </tr>
+        </table>
+    </div>
+
+    <br><br>
+    <input type="submit" value="Submit">
+    <br><br>
+</form> 
+
+
+
+
+    <script>
+    $("#adjustTable").on('click', generate);
+
+    function generate(e) {
+      var rows = $('#table-row-num').val();
+      var html = '<tr><th>Player No</th><th>Player Name</th><th>Representing</th><th>Golflink No</th><th>Daily Hand</th><th>GA Handicap</th><th>Gross</th><th>Nett</th></tr>';
+  
+
+      for (var i = 0; i < rows; i++) {
+        html += '<tr>' +
+          '<td>' + (i + 1) + '</td>' +
+          '<td><input type="name" placeholder="text goes here..."></td>' +
+          '<td><input type="name" placeholder="text goes here..."></td>' +
+          '<td><input type="number" placeholder="number goes here..."></td>' +
+          '<td><input type="number" placeholder="number goes here..."></td>' +
+          '<td><input type="decimal" placeholder="decimal goes here..."></td>' +
+          '<td><input type="number" placeholder="number goes here..."></td>' +
+          '<td><input type="number" placeholder="number goes here..."></td>' +
+          '</tr>';
+      }
+      $("#scoreboard").html(html);
+    }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var data= window.location.search;
+        var params= new URLSearchParams(data);
+        console.log(params);
+        var entrants= params.get("entrants")
+        var fee= params.get("fee")
+        var percent= params.get("percent")
+        var ntp= params.get("ntp")
+
+        var getData = "No. of Entrants : "+entrants+ "<br>";
+            getData += "Per Entrant Fee : $ "+fee + "<br>";
+            getData += "Percent of amount of be allocated : "+percent + " %" + "<br>";
+            getData += "No. of Entrants : "+ntp;
+
+        document.getElementById("res").innerHTML= getData;
+
+        document.getElementById("one").innerHTML= "$ " + entrants * fee;
+        document.getElementById("two").innerHTML= "$ " + entrants * fee * (percent / 100);
+        if (ntp < 1) {
+            document.getElementById("three").innerHTML= "$ " + entrants * fee;
+        }
+        else {
+            document.getElementById("three").innerHTML= "$ " + entrants * fee * (percent / 100) - (ntp * 10) ;
+        }
+        
+
+
+    </script>  
+
+
+
+
+</body>
+</html>
